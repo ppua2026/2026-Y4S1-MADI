@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mad/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,22 +17,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: StartScreen(),
+      home: SplashScreen(),
     );
   }
-}
-
-class StartScreen extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Image.asset('assets/ppua.png', width: 80,)
-      ),
-    );
-  }
-
-
-
 }
