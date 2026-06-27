@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mad/home_screen.dart';
+import 'package:mad/login_screen.dart';
 import 'package:mad/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -35,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
               backgroundColor: Colors.blue
           ),
           onPressed: (){
-            final route = MaterialPageRoute(builder: (BuildContext context) => MainScreen());
+            final route = MaterialPageRoute(builder: (BuildContext context) => LoginScreen());
             Navigator.pushReplacement(context, route);
 
           },
