@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mad/main_screen.dart';
+import 'package:mad/register_screen.dart';
 import 'package:mad/widgets/logo_widget.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,12 +17,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   void _onLoginClick() {
-    if(_formKey.currentState!.validate()){
+    if (_formKey.currentState!.validate()) {
       String username = usernameTextEditCtl.text;
       String password = passwordTextEditCtl.text;
       print("username : $username , passowrd : $password");
-    }else{
-      final snackBar = SnackBar(content: Text("Please inut Usenrame & Password"));
+    } else {
+      final snackBar = SnackBar(
+        content: Text("Please inut Usenrame & Password"),
+      );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
@@ -39,8 +42,8 @@ class _LoginScreenState extends State<LoginScreen> {
           hintText: "Username",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
         ),
-        validator: (value){
-          if(value == null || value.isEmpty){
+        validator: (value) {
+          if (value == null || value.isEmpty) {
             return "Username could not be blank";
           }
           return null;
@@ -58,8 +61,8 @@ class _LoginScreenState extends State<LoginScreen> {
           hintText: "Password",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
         ),
-        validator: (value){
-          if(value == null || value.isEmpty){
+        validator: (value) {
+          if (value == null || value.isEmpty) {
             return "Password could not be blank";
           }
           return null;
@@ -87,10 +90,26 @@ class _LoginScreenState extends State<LoginScreen> {
 
     final skipButton = Padding(
       padding: EdgeInsets.only(top: 32),
-      child: TextButton(onPressed: () {
-        final route = MaterialPageRoute(builder: (BuildContext context) => MainScreen());
-        Navigator.pushReplacement(context, route);
-      }, child: Text("Skip")),
+      child: TextButton(
+        onPressed: () {
+          final route = MaterialPageRoute(
+            builder: (BuildContext context) => MainScreen(),
+          );
+          Navigator.pushReplacement(context, route);
+        },
+        child: Text("Skip"),
+      ),
+    );
+
+    final noAccountToRegister = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("Don't have an account?"),
+        TextButton(onPressed: () {
+          final route = MaterialPageRoute(builder: (BuildContext context) => RegisterScreen());
+          Navigator.push(context, route);
+        }, child: Text("Register")),
+      ],
     );
 
     final facebookButton = IconButton(
@@ -105,7 +124,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: Text("Login"), centerTitle: true, elevation: 2),
       body: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -132,6 +150,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [facebookButton, googleButton],
               ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 16),
+              child: noAccountToRegister,
             ),
           ],
         ),
